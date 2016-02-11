@@ -41,6 +41,7 @@
 #include <string>
 #include <limits>
 #include "TLibCommon/TComRom.h"
+#include "TLibCommon/TComManageParameters.h"
 #include "TAppEncCfg.h"
 #include "TAppCommon/program_options_lite.h"
 #include "TLibEncoder/TEncRateCtrl.h"
@@ -684,6 +685,7 @@ Bool TAppEncCfg::parseCfg( Int argc, Char* argv[] )
   SMultiValueInput<Int>  cfg_timeCodeSeiTimeOffsetLength     (0, 31, 0, MAX_TIMECODE_SEI_SETS);
   SMultiValueInput<Int>  cfg_timeCodeSeiTimeOffsetValue      (std::numeric_limits<Int>::min(), std::numeric_limits<Int>::max(), 0, MAX_TIMECODE_SEI_SETS);
 
+
   po::Options opts;
   opts.addOptions()
   ("help",                                            do_help,                                          false, "this help text")
@@ -762,6 +764,15 @@ Bool TAppEncCfg::parseCfg( Int argc, Char* argv[] )
   ("QuadtreeTUMaxDepthIntra",                         m_uiQuadtreeTUMaxDepthIntra,                         1u, "Depth of TU tree for intra CUs")
   ("QuadtreeTUMaxDepthInter",                         m_uiQuadtreeTUMaxDepthInter,                         2u, "Depth of TU tree for inter CUs")
 
+#if EN_NEW_PARS
+    ("NumPred",                         TComManageParameters::numPred,                         4u, "Number of TZ Search Predictors")
+  ("TZFirst",                         TComManageParameters::tzFirst,                         true, "Enable TZ First Search")
+  ("TZRaster",                         TComManageParameters::tzRaster,                        true, "Enable TZ Raster Search")
+  ("TZRefinement",                         TComManageParameters::tzRefinement,                    true, "Enable TZ Refinement Search")
+  ("Disable8x8SMP",                         TComManageParameters::disable8x8SMP,                         false, "Disable 8x8 SMPs")
+  ("SubSampling",                         TComManageParameters::SADSubsampling,                         1u, "SAD subsampling, 0: no sub, 1: 1 each 2 rows sub, 2: 1 each 3 rows, 3: 1 each 4 rows")
+
+#endif
   // Coding structure paramters
   ("IntraPeriod,-ip",                                 m_iIntraPeriod,                                      -1, "Intra period in frames, (-1: only first frame)")
 #if ALLOW_RECOVERY_POINT_AS_RAP

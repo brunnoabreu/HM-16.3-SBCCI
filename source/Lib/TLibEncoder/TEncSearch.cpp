@@ -41,6 +41,7 @@
 #include "TEncSearch.h"
 #include "TLibCommon/TComTU.h"
 #include "TLibCommon/Debug.h"
+#include "TLibCommon/TComManageParameters.h"
 #include <math.h>
 #include <limits>
 
@@ -350,7 +351,12 @@ __inline Void TEncSearch::xTZSearchHelp( TComPattern* pcPatternKey, IntTZSearchS
     {
       if ( m_cDistParam.iRows > 8 )
       {
+#if EN_NEW_PARS
+        m_cDistParam.iSubShift = TComManageParameters::SADSubsampling;
+#else
         m_cDistParam.iSubShift = 1;
+#endif
+
       }
     }
   }
@@ -3909,7 +3915,7 @@ Void TEncSearch::xTZSearch( TComDataCU*  pcCU,
   xTZSearchHelp( pcPatternKey, cStruct, rcMv.getHor(), rcMv.getVer(), 0, 0 );
 
   // test whether one of PRED_A, PRED_B, PRED_C MV is better start point than Median predictor
-  if ( bTestOtherPredictedMV )
+  if ( bTestOtherPredictedMV and TComManageParameters::numPred > 1 )
   {
     for ( UInt index = 0; index < NUM_MV_PREDICTORS; index++ )
     {
@@ -3921,7 +3927,7 @@ Void TEncSearch::xTZSearch( TComDataCU*  pcCU,
   }
 
   // test whether zero Mv is better start point than Median predictor
-  if ( bTestZeroVector )
+  if ( bTestZeroVector and TComManageParameters::numPred > 1 )
   {
     xTZSearchHelp( pcPatternKey, cStruct, 0, 0, 0, 0 );
   }
@@ -3953,7 +3959,7 @@ Void TEncSearch::xTZSearch( TComDataCU*  pcCU,
   Int  iStartY = cStruct.iBestY;
 
   // first search
-  for ( iDist = 1; iDist <= (Int)uiSearchRange; iDist*=2 )
+  for ( iDist = 1; iDist <= (Int)uiSearchRange && TComManageParameters::tzFirst; iDist*=2 )
   {
     if ( bFirstSearchDiamond == 1 )
     {
@@ -3996,7 +4002,7 @@ Void TEncSearch::xTZSearch( TComDataCU*  pcCU,
   }
 
   // raster search if distance is too big
-  if ( bEnableRasterSearch && ( ((Int)(cStruct.uiBestDistance) > iRaster) || bAlwaysRasterSearch ) )
+  if ( bEnableRasterSearch && TComManageParameters::tzRaster && ( ((Int)(cStruct.uiBestDistance) > iRaster) || bAlwaysRasterSearch ) )
   {
     cStruct.uiBestDistance = iRaster;
     for ( iStartY = iSrchRngVerTop; iStartY <= iSrchRngVerBottom; iStartY += iRaster )
@@ -4009,7 +4015,7 @@ Void TEncSearch::xTZSearch( TComDataCU*  pcCU,
   }
 
   // raster refinement
-  if ( bRasterRefinementEnable && cStruct.uiBestDistance > 0 )
+  if ( bRasterRefinementEnable && TComManageParameters::tzRefinement && cStruct.uiBestDistance > 0 )
   {
     while ( cStruct.uiBestDistance > 0 )
     {
@@ -4041,7 +4047,7 @@ Void TEncSearch::xTZSearch( TComDataCU*  pcCU,
   }
 
   // start refinement
-  if ( bStarRefinementEnable && cStruct.uiBestDistance > 0 )
+  if ( bStarRefinementEnable && TComManageParameters::tzRefinement && cStruct.uiBestDistance > 0 )
   {
     while ( cStruct.uiBestDistance > 0 )
     {
