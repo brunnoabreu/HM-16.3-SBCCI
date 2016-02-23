@@ -40,6 +40,7 @@
 #include "TEncCu.h"
 #include "TEncAnalyze.h"
 #include "TLibCommon/Debug.h"
+#include "TLibCommon/TComManageParameters.h"
 
 #include <cmath>
 #include <algorithm>
@@ -494,8 +495,11 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
               rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
             }
           }
-
-          if(doNotBlockPu)
+#if EN_NEW_PARS
+          if(doNotBlockPu and TComManageParameters::SMP and not (TComManageParameters::disable8x8SMP and uiDepth == 3))
+#else
+          if(doNotBlockPu )
+#endif
           {
             xCheckRDCostInter( rpcBestCU, rpcTempCU, SIZE_Nx2N DEBUG_STRING_PASS_INTO(sDebug)  );
             rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );
@@ -504,7 +508,12 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
               doNotBlockPu = rpcBestCU->getQtRootCbf( 0 ) != 0;
             }
           }
-          if(doNotBlockPu)
+          
+#if EN_NEW_PARS
+          if(doNotBlockPu and TComManageParameters::SMP and not (TComManageParameters::disable8x8SMP and uiDepth == 3))
+#else
+          if(doNotBlockPu )
+#endif
           {
             xCheckRDCostInter      ( rpcBestCU, rpcTempCU, SIZE_2NxN DEBUG_STRING_PASS_INTO(sDebug)  );
             rpcTempCU->initEstData( uiDepth, iQP, bIsLosslessMode );

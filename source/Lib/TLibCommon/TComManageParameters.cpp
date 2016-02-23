@@ -10,6 +10,7 @@
 
 unsigned int TComManageParameters::numPred;
 bool TComManageParameters::disable8x8SMP;
+bool TComManageParameters::SMP;
 bool TComManageParameters::tzFirst;
 bool TComManageParameters::tzRaster;
 bool TComManageParameters::tzRefinement;

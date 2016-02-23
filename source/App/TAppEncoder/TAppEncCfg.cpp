@@ -765,12 +765,13 @@ Bool TAppEncCfg::parseCfg( Int argc, Char* argv[] )
   ("QuadtreeTUMaxDepthInter",                         m_uiQuadtreeTUMaxDepthInter,                         2u, "Depth of TU tree for inter CUs")
 
 #if EN_NEW_PARS
-    ("NumPred",                         TComManageParameters::numPred,                         4u, "Number of TZ Search Predictors")
-  ("TZFirst",                         TComManageParameters::tzFirst,                         true, "Enable TZ First Search")
-  ("TZRaster",                         TComManageParameters::tzRaster,                        true, "Enable TZ Raster Search")
-  ("TZRefinement",                         TComManageParameters::tzRefinement,                    true, "Enable TZ Refinement Search")
-  ("Disable8x8SMP",                         TComManageParameters::disable8x8SMP,                         false, "Disable 8x8 SMPs")
-  ("SubSampling",                         TComManageParameters::SADSubsampling,                         1u, "SAD subsampling, 0: no sub, 1: 1 each 2 rows sub, 2: 1 each 3 rows, 3: 1 each 4 rows")
+    ("NumPred",                   TComManageParameters::numPred,                         5u, "Number of TZ Search Predictors")
+  ("TZFirst",                     TComManageParameters::tzFirst,                         true, "Enable TZ First Search")
+  ("TZRaster",                    TComManageParameters::tzRaster,                        true, "Enable TZ Raster Search")
+  ("TZRefinement",                TComManageParameters::tzRefinement,                    true, "Enable TZ Refinement Search")
+  ("Disable8x8SMP",               TComManageParameters::disable8x8SMP,                   false, "Disable 8x8 SMPs")
+  ("SubSampling",                 TComManageParameters::SADSubsampling,                  1u, "SAD subsampling, 0: no sub, 1: 1 each 2 rows sub, 2: 1 each 3 rows, 3: 1 each 4 rows")
+  ("SMP",                         TComManageParameters::SMP,                             true, "SMP enabler")
 
 #endif
   // Coding structure paramters

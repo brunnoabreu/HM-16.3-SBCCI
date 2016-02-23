@@ -1,0 +1,15 @@
+objects/NALread.r.o: \
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/NALread.cpp \
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/NALread.h \
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TComBitStream.h \
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/NAL.h
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/NALread.cpp :
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/NALread.h :
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TComBitStream.h :
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/NAL.h :

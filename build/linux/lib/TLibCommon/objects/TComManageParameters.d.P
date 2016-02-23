@@ -1,0 +1,5 @@
+objects/TComManageParameters.d.o: \
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComManageParameters.cpp \
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComManageParameters.h
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComManageParameters.cpp :
+ /home/grellert/HM-16.3-SBCCI/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComManageParameters.h :

@@ -12,7 +12,7 @@
 
 class TComManageParameters {
 public:
-  static bool tzFirst,tzRaster, tzRefinement, disable8x8SMP;
+  static bool tzFirst,tzRaster, tzRefinement, disable8x8SMP, SMP;
   static unsigned int numPred, SADSubsampling;
 
 };
