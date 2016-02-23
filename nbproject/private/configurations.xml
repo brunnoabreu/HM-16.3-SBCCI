@@ -208,6 +208,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -221,8 +223,10 @@
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/BlowingBubbles.cfg -f 9 --QP=32</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/BlowingBubbles.cfg -f 9 --QP=32 --SearchRange=32
+</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/BlowingBubbles.cfg -f 9 --QP=32</runcommand>
+        <runcommand>"${OUTPUT_PATH}" -c ../cfg/encoder_lowdelay_main.cfg -c ../cfg/per-sequence/BlowingBubbles.cfg -f 9 --QP=32 --SearchRange=32</runcommand>
         <rundir>build</rundir>
         <buildfirst>false</buildfirst>
         <terminal-type>0</terminal-type>

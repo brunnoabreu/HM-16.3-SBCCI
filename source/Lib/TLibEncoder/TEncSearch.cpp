@@ -3716,7 +3716,7 @@ Void TEncSearch::xMotionEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPa
 
   if ( bBi )
   {
-    xSetSearchRange   ( pcCU, rcMv   , iSrchRng, cMvSrchRngLT, cMvSrchRngRB );
+    xSetSearchRange   ( pcCU, rcMv   , iSrchRng, cMvSrchRngLT, cMvSrchRngRB, true );
   }
   else
   {
@@ -3769,7 +3769,7 @@ Void TEncSearch::xMotionEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPa
 
 
 
-Void TEncSearch::xSetSearchRange ( TComDataCU* pcCU, TComMv& cMvPred, Int iSrchRng, TComMv& rcMvSrchRngLT, TComMv& rcMvSrchRngRB )
+Void TEncSearch::xSetSearchRange ( TComDataCU* pcCU, TComMv& cMvPred, Int iSrchRng, TComMv& rcMvSrchRngLT, TComMv& rcMvSrchRngRB , bool bi)
 {
   Int  iMvShift = 2;
   TComMv cTmpMvPred = cMvPred;
@@ -3780,11 +3780,26 @@ Void TEncSearch::xSetSearchRange ( TComDataCU* pcCU, TComMv& cMvPred, Int iSrchR
 
   rcMvSrchRngRB.setHor( cTmpMvPred.getHor() + (iSrchRng << iMvShift) );
   rcMvSrchRngRB.setVer( cTmpMvPred.getVer() + (iSrchRng << iMvShift) );
+  
+#if EN_SR_ADJUSTMENT
+  if (not(bi)){
+    int srchRng = iSrchRng - (TComManageParameters::cuDimension/2);
+
+    rcMvSrchRngLT.setHor( cTmpMvPred.getHor() - (srchRng << iMvShift) );
+    rcMvSrchRngLT.setVer( cTmpMvPred.getVer() - (srchRng << iMvShift) );
+    rcMvSrchRngRB.setHor( cTmpMvPred.getHor() + (srchRng << iMvShift) );
+    rcMvSrchRngRB.setVer( cTmpMvPred.getVer() + (srchRng << iMvShift) );
+  }
+#endif
+  
   pcCU->clipMv        ( rcMvSrchRngLT );
   pcCU->clipMv        ( rcMvSrchRngRB );
 
   rcMvSrchRngLT >>= iMvShift;
   rcMvSrchRngRB >>= iMvShift;
+  
+
+  
 }
 
 
@@ -3953,7 +3968,7 @@ Void TEncSearch::xTZSearch( TComDataCU*  pcCU,
     iSrchRngVerBottom = cMvSrchRngRB.getVer();
   }
 
-  // start search
+          // start search
   Int  iDist = 0;
   Int  iStartX = cStruct.iBestX;
   Int  iStartY = cStruct.iBestY;

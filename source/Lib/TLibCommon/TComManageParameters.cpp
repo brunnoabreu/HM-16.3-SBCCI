@@ -9,6 +9,7 @@
 
 
 unsigned int TComManageParameters::numPred;
+unsigned int TComManageParameters::cuDimension;
 bool TComManageParameters::disable8x8SMP;
 bool TComManageParameters::SMP;
 bool TComManageParameters::tzFirst;

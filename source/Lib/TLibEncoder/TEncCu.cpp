@@ -352,7 +352,9 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt u
 Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, UInt uiDepth )
 #endif
 {
-  TComPic* pcPic = rpcBestCU->getPic();
+  TComManageParameters::cuDimension = 1 << (6 - uiDepth);
+    
+  TComPic* pcPic = rpcBestCU->getPic();;
   DEBUG_STRING_NEW(sDebug)
 
   // get Original YUV data from picture

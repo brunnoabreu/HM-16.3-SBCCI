@@ -395,7 +395,8 @@ protected:
                                     TComMv&      cMvPred,
                                     Int          iSrchRng,
                                     TComMv&      rcMvSrchRngLT,
-                                    TComMv&      rcMvSrchRngRB );
+                                    TComMv&      rcMvSrchRngRB,
+                                    bool bi = false);
 
   Void xPatternSearchFast         ( TComDataCU*  pcCU,
                                     TComPattern* pcPatternKey,
